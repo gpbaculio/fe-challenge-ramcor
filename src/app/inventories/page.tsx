@@ -1,10 +1,23 @@
 // pages/inventories.js
 "use client";
-import { useSurvivorContext } from "@/contexts/SurvivorContext";
 import React from "react";
+
+import { useSurvivorContext } from "@/contexts/SurvivorContext";
+
+interface ItemTotals {
+  [itemId: string]: number;
+}
 
 const InventoriesPage = () => {
   const { survivors, requestItemFromSurvivor } = useSurvivorContext();
+
+  // Calculate total quantity of each item
+  const itemTotals = survivors.reduce((acc, survivor) => {
+    survivor.inventory.forEach((item) => {
+      acc[item.itemId] = (acc[item.itemId] || 0) + item.quantity;
+    });
+    return acc;
+  }, {} as ItemTotals);
 
   return (
     <div className="max-w-4xl mx-auto mt-6">
@@ -37,6 +50,16 @@ const InventoriesPage = () => {
           </ul>
         </div>
       ))}
+      <div className="mt-4">
+        <h3 className="text-xl font-bold">Total Quantities</h3>
+        <ul className="ml-4">
+          {Object.entries(itemTotals).map(([itemId, total]) => (
+            <li key={itemId} className="text-sm text-gray-500">
+              {total} x {itemId}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };

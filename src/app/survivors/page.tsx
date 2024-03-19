@@ -1,6 +1,7 @@
 "use client";
-import { useSurvivorContext } from "@/contexts/SurvivorContext";
 import React from "react";
+
+import { useSurvivorContext } from "@/contexts/SurvivorContext";
 
 const SurvivorList = () => {
   const { survivors } = useSurvivorContext();

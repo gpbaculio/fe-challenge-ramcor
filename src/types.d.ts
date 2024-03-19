@@ -1,4 +1,9 @@
+export type inventoryItemType = {
+  itemId: Item["id"];
+  quantity: number;
+};
 export interface Survivor {
+  id: string;
   name: string;
   age: number;
   gender: "male" | "female" | "other";
@@ -6,10 +11,7 @@ export interface Survivor {
     latitude: number;
     longitude: number;
   };
-  inventory: {
-    itemId: Item["id"];
-    quantity: number;
-  }[];
+  inventory: inventoryItemType[];
   infected: boolean;
 }
 

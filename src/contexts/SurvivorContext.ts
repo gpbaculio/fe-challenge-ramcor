@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { Survivor } from "@/@types";
+import { Survivor } from "@/types";
 
 interface SurvivorContextType {
   survivors: Survivor[]; // Update this with the actual type of survivors array

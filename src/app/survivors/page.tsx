@@ -22,25 +22,25 @@ const SurvivorList = () => {
                   </div>
                 </div>
                 <div className="mt-2 flex items-center">
-                  <div className="flex-shrink-0">
-                    <svg
-                      className="h-6 w-6 text-gray-400"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M6 18L18 6M6 6l12 12"
-                      />
-                    </svg>
+                  <div className="text-md font-medium text-gray-900">
+                    Gender
                   </div>
                   <div className="ml-2 text-sm text-gray-500">
                     {survivor.gender}
                   </div>
+                </div>
+                {/* Render survivor's inventory */}
+                <div className="mt-2">
+                  <h3 className="text-lg font-medium text-gray-900">
+                    Inventory
+                  </h3>
+                  <ul className="ml-4">
+                    {survivor.inventory.map((item) => (
+                      <li key={item.itemId} className="text-sm text-gray-500">
+                        {item.quantity} x {item.itemId}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </li>

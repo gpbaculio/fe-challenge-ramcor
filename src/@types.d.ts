@@ -1,4 +1,4 @@
-interface Survivor {
+export interface Survivor {
   name: string;
   age: number;
   gender: "male" | "female" | "other";
@@ -7,20 +7,20 @@ interface Survivor {
     longitude: number;
   };
   inventory: {
-    itemId: string;
+    itemId: Item["id"];
     quantity: number;
   }[];
   infected: boolean;
 }
 
-enum ItemOption {
+export enum ItemOption {
   Water = "Water",
   Food = "Food",
   Medication = "Medication",
   CVirusVaccine = "C-Virus Vaccine",
 }
 
-interface Item {
+export interface Item {
   id: string;
   name: ItemOption;
   description: string;

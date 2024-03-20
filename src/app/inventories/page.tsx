@@ -21,11 +21,11 @@ const InventoriesPage = () => {
   }, {} as ItemTotals);
 
   return (
-    <div className="max-w-4xl mx-auto mt-6">
-      <h2 className="text-2xl font-bold mb-4">Inventories</h2>
+    <div className="max-w-4xl mx-auto mt-6 bg-white shadow overflow-hidden sm:rounded-md p-5">
+      <h2 className="text-2xl font-bold mb-4 text-black">Inventories</h2>
       {survivors.map((survivor) => (
         <div key={survivor.id} className="mb-4">
-          <h3 className="text-xl font-bold">
+          <h3 className="text-xl font-bold text-black">
             {survivor.name}&apos;s Inventory
           </h3>
           <ul className="ml-4">
@@ -63,7 +63,7 @@ const InventoriesPage = () => {
         </div>
       ))}
       <div className="mt-4">
-        <h3 className="text-xl font-bold">Total Quantities</h3>
+        <h3 className="text-xl font-bold text-black">Total Quantities</h3>
         <ul className="ml-4">
           {Object.entries(itemTotals).map(([itemId, total]) => (
             <li key={itemId} className="text-sm text-gray-500">

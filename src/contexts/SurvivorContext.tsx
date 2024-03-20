@@ -9,6 +9,7 @@ interface SurvivorContextType {
   listSurvivorInventory: (survivorId: string) => inventoryItemType[] | null;
   listItemsBySurvivor: (survivorId: string) => inventoryItemType[] | null;
   requestItemFromSurvivor: (survivorId: string, itemId: string) => void;
+  addItemFromSurvivor: (survivorId: string, itemId: string) => void;
 }
 
 const initialSurvivors: Survivor[] = [
@@ -75,6 +76,7 @@ const SurvivorContext = createContext<SurvivorContextType>({
   listSurvivorInventory: () => null,
   listItemsBySurvivor: () => null,
   requestItemFromSurvivor: () => {},
+  addItemFromSurvivor: () => {},
 });
 
 interface SurvivorProviderProps {
@@ -119,6 +121,24 @@ const SurvivorProvider: React.FC<SurvivorProviderProps> = ({ children }) => {
     }
   };
 
+  const addItemFromSurvivor = (survivorId: string, itemId: string) => {
+    const survivorIndex = survivors.findIndex(
+      (survivor) => survivor.id === survivorId
+    );
+
+    if (survivorIndex !== -1) {
+      const updatedSurvivors = [...survivors];
+      const itemIndex = updatedSurvivors[survivorIndex].inventory.findIndex(
+        (item) => item.itemId === itemId
+      );
+      if (itemIndex !== -1) {
+        // Decrease the quantity of the item by 1
+        updatedSurvivors[survivorIndex].inventory[itemIndex].quantity += 1;
+        setSurvivors(updatedSurvivors);
+      }
+    }
+  };
+
   return (
     <SurvivorContext.Provider
       value={{
@@ -127,6 +147,7 @@ const SurvivorProvider: React.FC<SurvivorProviderProps> = ({ children }) => {
         listSurvivorInventory,
         listItemsBySurvivor,
         requestItemFromSurvivor,
+        addItemFromSurvivor,
       }}
     >
       {children}

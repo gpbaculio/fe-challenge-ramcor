@@ -9,7 +9,8 @@ interface ItemTotals {
 }
 
 const InventoriesPage = () => {
-  const { survivors, requestItemFromSurvivor } = useSurvivorContext();
+  const { survivors, requestItemFromSurvivor, addItemFromSurvivor } =
+    useSurvivorContext();
 
   // Calculate total quantity of each item
   const itemTotals = survivors.reduce((acc, survivor) => {
@@ -36,15 +37,24 @@ const InventoriesPage = () => {
                 <span>
                   {item.quantity} x {item.itemId}
                 </span>
-                {/* Request item button */}
-                <button
-                  onClick={() => {
-                    requestItemFromSurvivor(survivor.id, item.itemId);
-                  }}
-                  className="ml-2 px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
-                >
-                  Request
-                </button>
+                <div>
+                  <button
+                    onClick={() =>
+                      addItemFromSurvivor(survivor.id, item.itemId)
+                    }
+                    className="mr-2 px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600"
+                  >
+                    Add Item
+                  </button>
+                  <button
+                    onClick={() =>
+                      requestItemFromSurvivor(survivor.id, item.itemId)
+                    }
+                    className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
+                  >
+                    Request Item
+                  </button>
+                </div>
               </li>
             ))}
           </ul>

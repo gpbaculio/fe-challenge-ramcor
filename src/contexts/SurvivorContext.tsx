@@ -12,7 +12,7 @@ interface SurvivorContextType {
   addItemFromSurvivor: (survivorId: string, itemId: string) => void;
 }
 
-const initialSurvivors: Survivor[] = [
+export const initialSurvivors: Survivor[] = [
   {
     id: "1",
     name: "John Doe",
@@ -83,7 +83,9 @@ interface SurvivorProviderProps {
   children: ReactNode;
 }
 
-const SurvivorProvider: React.FC<SurvivorProviderProps> = ({ children }) => {
+export const SurvivorProvider: React.FC<SurvivorProviderProps> = ({
+  children,
+}) => {
   const [survivors, setSurvivors] = useState<Survivor[]>(initialSurvivors);
 
   const addSurvivor = (newSurvivor: Survivor) => {
@@ -156,5 +158,4 @@ const SurvivorProvider: React.FC<SurvivorProviderProps> = ({ children }) => {
 };
 
 export const useSurvivorContext = () => useContext(SurvivorContext);
-
-export { SurvivorProvider, SurvivorContext };
+export default SurvivorContext;

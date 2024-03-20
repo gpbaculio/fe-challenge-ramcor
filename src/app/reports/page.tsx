@@ -25,7 +25,7 @@ const MapComponent = () => {
         .select("#map-container") // Use a container element with id 'map-container'
         .append("svg")
         .attr("width", width)
-        .attr("height", height);
+        .attr("height", height) as any;
 
       svg
         .append("rect")
@@ -41,7 +41,12 @@ const MapComponent = () => {
       }
       const g = svg.append("g");
       g.append("path")
-        .datum(topojson.feature(world, world.objects.countries))
+        .datum(
+          topojson.feature(
+            world as unknown as any,
+            (world as unknown as any)?.objects?.countries
+          )
+        )
         .attr("d", path)
         .attr("fill", "lightgreen")
         .attr("stroke", "green");
@@ -57,7 +62,7 @@ const MapComponent = () => {
           g.attr("transform", `${d3.zoomTransform(this)}`);
         });
 
-      svg.call(zoom);
+      svg.call(zoom as any);
 
       // Convert survivor locations to GeoJSON format
       const survivorLocations = {
@@ -98,7 +103,7 @@ const MapComponent = () => {
           (d) =>
             projection(d.geometry.coordinates as [number, number])?.[1] ?? 0
         )
-        .attr("r", 6) // Adjust the radius as needed
+        .attr("r", 8) // Adjust the radius as needed
         .style("fill", "red")
         .on("mouseover", function (e, d) {
           d3.select(this).style("fill", "black");

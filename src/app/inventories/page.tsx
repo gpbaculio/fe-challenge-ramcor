@@ -34,11 +34,12 @@ const InventoriesPage = () => {
                 key={item.itemId}
                 className="text-sm mb-2 text-gray-500 flex items-center justify-between"
               >
-                <span>
+                <span data-testid={`info-${survivor.id}-${item.itemId}`}>
                   {item.quantity} x {item.itemId}
                 </span>
                 <div>
                   <button
+                    data-testid={`add-${survivor.id}-${item.itemId}`}
                     onClick={() =>
                       addItemFromSurvivor(survivor.id, item.itemId)
                     }
@@ -47,6 +48,7 @@ const InventoriesPage = () => {
                     Add Item
                   </button>
                   <button
+                    data-testid={`req-${survivor.id}-${item.itemId}`}
                     onClick={() =>
                       requestItemFromSurvivor(survivor.id, item.itemId)
                     }

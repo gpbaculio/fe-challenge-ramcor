@@ -98,7 +98,7 @@ const MapComponent = () => {
           (d) =>
             projection(d.geometry.coordinates as [number, number])?.[1] ?? 0
         )
-        .attr("r", 4) // Adjust the radius as needed
+        .attr("r", 6) // Adjust the radius as needed
         .style("fill", "red")
         .on("mouseover", function (e, d) {
           d3.select(this).style("fill", "black");
@@ -120,9 +120,16 @@ const MapComponent = () => {
           tooltip.transition().duration(500).style("opacity", 0);
         });
     });
-  }, []);
+  }, [survivors]);
 
-  return <div id="map-container"></div>; // Render the map within a container div
+  return (
+    <div className="flex justify-center items-center h-full">
+      <div className="max-w-4xl mx-auto">
+        <h2 className="text-2xl font-bold my-4">Reports</h2>
+        <div id="map-container" />
+      </div>
+    </div>
+  ); // Render the map within a container div
 };
 
 export default MapComponent;

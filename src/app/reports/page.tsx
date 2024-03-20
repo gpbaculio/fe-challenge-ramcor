@@ -100,7 +100,6 @@ const MapComponent = () => {
         )
         .attr("r", 4) // Adjust the radius as needed
         .style("fill", "red")
-        .style("opacity", 0.6)
         .on("mouseover", function (e, d) {
           d3.select(this).style("fill", "black");
           tooltip.transition().duration(200).style("opacity", 0.9);
